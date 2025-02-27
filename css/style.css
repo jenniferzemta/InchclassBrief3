@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* #cvPreview {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#cvPreview h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1a365d;
+}
+
+#cvPreview h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d3748;
+    border-bottom: 2px solid #ecc94b;
+    padding-bottom: 4px;
+}
+
+#cvPreview p {
+    font-size: 0.875rem;
+    color: #4a5568;
+} */
+
+nav{
+height: 400px;
+   
+background-image: linear-gradient(to right,  rgba(41, 41, 252, 0.5) ,rgba(253, 169, 11, 0.5)), 
+                  url('/images/p.jpg');
+background-size: cover;
+background-position: center;
+
+   
+}
+
+.clip-path-triangle {
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+}
+.clip-path-triangle1 {
+    clip-path: polygon(0 100 , 100% 100%, 80% 100%, 0% 100%);
+}

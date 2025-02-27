@@ -1,0 +1,44 @@
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Connexion</title>
+        <link rel="stylesheet" href="../css/tailwind.css" class="">
+        <link rel="stylesheet" href="../css/style.css" class="">
+    </head>
+    <body class="bg-gray-100">
+        <!-- Navbar -->
+        <nav class="bg-blue-900 text-white py-4">
+            <div class="container mx-auto flex justify-between items-center px-6">
+                <a href="accueil.html" class="text-2xl font-bold flex items-center">
+                Web<span class="text-yellow-600">nova</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Formulaire de connexion -->
+        <section class="container mx-auto py-10 px-6">
+            <div class="max-w-md mx-auto bg-white p-10 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-center mb-6">Connexion</h2>
+                <form>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700">Email</label>
+                        <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-gray-700">Mot de passe</label>
+                        <input type="password" id="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Se connecter
+                    </button>
+                </form>
+                <p class="mt-4 text-center text-gray-600">
+                    Pas encore de compte ? <a href="register.html" class="text-blue-600 hover:underline">Inscrivez-vous</a>
+                </p>
+            </div>
+        </section>
+
+    </body>
+    </html>
