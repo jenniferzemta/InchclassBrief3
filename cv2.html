@@ -30,18 +30,18 @@
                 <!-- Informations personnelles -->
                 <section class="mb-6 w-full z-20">
                     <h3 class="text-xl font-bold mb-2">Informations personnelles</h3>
-                    <input type="text" id="nom" placeholder="Nom complet" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white">
-                    <input type="number" id="age" placeholder="Âge (18-65)" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white">
-                    <select id="sexe" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white">
+                    <input type="text" id="nom" placeholder="Nom complet" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white " required>
+                    <input type="number" id="age" placeholder="Âge (18-65)" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white" required>
+                    <select id="sexe" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white" required>
                         <option value="Homme">Homme</option>
                         <option value="Femme">Femme</option>
                     </select>
-                    <input type="text" id="titre" placeholder="Titre du poste" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white">
-                    <input type="text" id="situation" placeholder="Situation actuelle" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white">
+                    <input type="text" id="titre" placeholder="Titre du poste" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white"required>
+                    <input type="text" id="situation" placeholder="Situation actuelle" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white" required>
                     <textarea id="description" placeholder="Description" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white"></textarea>
-                    <input type="email" id="email" placeholder="Email" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white">
-                    <input type="tel" id="telephone" placeholder="Téléphone" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white">
-                    <input type="text" id="adresse" placeholder="Adresse" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white">
+                    <input type="email" id="email" placeholder="Email" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white" required>
+                    <input type="tel" id="telephone" placeholder="Téléphone" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white" required>
+                    <input type="text" id="adresse" placeholder="Adresse" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white" required>
                     <input type="file" id="photo" class="w-full p-2 mb-2 border rounded bg-gray-900 text-white">
                     <p id="error-personnel" class="text-red-500 text-sm hidden">Veuillez remplir tous les champs obligatoires.</p>
                 </section>
@@ -116,7 +116,7 @@
                 <!-- Boutons -->
                 <div class="flex gap-4 w-full z-20">
                     <button id="sauvegarder" class="bg-green-600 text-white px-4 py-2 rounded flex-1">Sauvegarder</button>
-                    <button id="telechargerPDF" class="bg-blue-600 text-white px-4 py-2 rounded flex-1">Télécharger en PDF</button>
+                    <button id="pdf" onclick="genererPDF()" class="bg-blue-600 text-white px-4 py-2 rounded flex-1">Télécharger en PDF</button>
                 </div>
             </div>
 

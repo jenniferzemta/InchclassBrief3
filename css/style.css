@@ -43,3 +43,18 @@ background-position: center;
 .clip-path-triangle1 {
     clip-path: polygon(0 100 , 100% 100%, 80% 100%, 0% 100%);
 }
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #cvPreview, #cvPreview * {
+        visibility: visible;
+    }
+    #cvPreview {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+}

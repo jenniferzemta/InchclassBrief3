@@ -828,49 +828,7 @@
         `);
         updatePreview();
     });
-    // Télécharger le CV en PDF
-    $('#telechargerPDF').click(function () {
-        // Sélectionner la section à convertir en PDF
-        const element = document.getElementById('#cvPreview');
-        //const $element = $('cvPreview');
-                        const options = {
-                            margin: 10,
-                            filename: 'mon_cv.pdf',
-                            image: { type: 'jpeg', quality: 0.98 },
-                            html2canvas: { scale: 4 , useCORS: true },
-                            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                        };
-                        html2pdf().set(options).from(element[0]).outputPDF('bloburl').then( (pdfUrl ) => {
-                        window.open(pdfUrl, '_blank');
-                        
-                console.log('PDF généré avec succès !');
-        })       .catch((err) => {
-            console.error('Erreur lors de la génération du PDF :', err);
-    //       });
-                        });
-                    });
-    //     // Options pour html2pdf
-    //     const options = {
-    //         margin: [10, 10, 10, 10], // Marges (haut, droite, bas, gauche)
-    //         filename: 'CV.pdf', // Nom du fichier PDF
-    //         image: { type: 'jpeg', quality: 0.98 }, // Qualité de l'image
-    //         html2canvas: { scale: 4, useCORS: true }, // Options pour html2canvas
-    //         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }, // Format du PDF
-    //     };
-
-    //     // Générer le PDF
-    //     html2pdf()
-    //         .from(element)
-    //         .set(options)
-    //         .save()
-    //         .then(() => {
-    //             console.log('PDF généré avec succès !');
-    //         })
-    //         .catch((err) => {
-    //             console.error('Erreur lors de la génération du PDF :', err);
-    //         });
-    // });
-
+   
     //ANIMATIOND
                 anime({
                     targets: '#cvPreview',
@@ -926,3 +884,22 @@
             easing: 'easeOutExpo',
             delay: 500
         });
+
+
+
+        function generatePDF() {
+            const element = document.getElementById('cvPreview');
+            const opt = {
+                margin:       10,
+                filename:     'cv.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+        
+            // Générer le PDF et l'ouvrir dans une nouvelle fenêtre
+            html2pdf().from(element).set(opt).outputPdf('datauristring').then(function(pdfAsString) {
+                const pdfWindow = window.open("");
+                pdfWindow.document.write("<iframe width='100%' height='100%' src='" + pdfAsString + "'></iframe>");
+            });
+        }

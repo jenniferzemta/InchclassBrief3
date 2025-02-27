@@ -438,6 +438,9 @@
   .m-1 {
     margin: calc(var(--spacing) * 1);
   }
+  .m-9 {
+    margin: calc(var(--spacing) * 9);
+  }
   .m-10 {
     margin: calc(var(--spacing) * 10);
   }
@@ -614,6 +617,9 @@
   }
   .w-1\/2 {
     width: calc(1/2 * 100%);
+  }
+  .w-7 {
+    width: calc(var(--spacing) * 7);
   }
   .w-24 {
     width: calc(var(--spacing) * 24);
@@ -1323,6 +1329,9 @@
   }
   .bg-\[var\(--my_variable\)\] {
     background-color: var(--my_variable);
+  }
+  .bg-blue-400 {
+    background-color: var(--color-blue-400);
   }
   .bg-blue-500 {
     background-color: var(--color-blue-500);

@@ -26,14 +26,14 @@
                 <!-- Informations personnelles -->
                 <section class="mb-6">
                     <h3 class="text-xl font-bold pb-5 mb-2">Informations personnelles</h3>
-                    <input type="text" id="nom" placeholder="Nom complet" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
-                    <input type="number" id="age" placeholder="Âge (18-65)" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
-                    <select id="sexe" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
+                    <input type="text" id="nom" placeholder="Nom complet" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white " required>
+                    <input type="number" id="age" placeholder="Âge (18-65)" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white " required>
+                    <select id="sexe" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white" required>
                         <option value="Homme">Homme</option>
                         <option value="Femme">Femme</option>
                     </select>
-                    <input type="text" id="titre" placeholder="Titre du poste" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
-                    <input type="text" id="situation" placeholder="Situation actuelle" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
+                    <input type="text" id="titre" placeholder="Titre du poste" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white" required>
+                    <input type="text" id="situation" placeholder="Situation actuelle" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white" required>
                     <textarea id="description" placeholder="Description" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white"></textarea>
                     <input type="email" id="email" placeholder="Email" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
                     <input type="tel" id="telephone" placeholder="Téléphone" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
@@ -49,7 +49,7 @@
                         <div class="experience mb-4">
                             <input type="text" placeholder="Nom de l'entreprise" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
                             <input type="text" placeholder="Poste occupé" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
-                            <input type="date" placeholder="Durée (ex: Janvier 20xx - Mars 20xx)" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
+                            <input type="text" placeholder="Durée (ex: Janvier 20xx - Mars 20xx)" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
                             <textarea placeholder="Description des missions" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white"></textarea>
                         </div>
                     </div>
@@ -59,12 +59,12 @@
 
                 <!-- Formation -->
                 <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-2">Formation</h3>
+                    <h3 class="text-xl font-bold mb-2">FORMATION</h3>
                     <div id="formations">
                         <div class="formation mb-4">
                             <input type="text" placeholder="Diplôme" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
                             <input type="text" placeholder="Établissement" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
-                            <input type="number" placeholder="Durée (ex: Janvier 20xx - Mars 20xx)" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
+                            <input type="text" placeholder="Durée (ex: Janvier 20xx - Mars 20xx)" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
                         </div>
                     </div>
                     <button id="ajouterFormation" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Ajouter une formation</button>
@@ -73,7 +73,7 @@
 
                 <!-- Compétences -->
                 <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-2">Compétences</h3>
+                    <h3 class="text-xl font-bold mb-2">COMPETENCES</h3>
                     <div id="competencesList">
                         <div class="competence mb-4">
                             <input type="text" placeholder="Compétence" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
@@ -85,7 +85,7 @@
 
                 <!-- Langues -->
                 <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-2">Langues</h3>
+                    <h3 class="text-xl font-bold mb-2">LANGUES</h3>
                     <div id="languesList">
                         <div class="langue mb-4">
                             <input type="text" placeholder="Langue" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
@@ -97,7 +97,7 @@
 
                 <!-- Références -->
                 <div class="mb-6">
-                    <h3 class="text-xl font-bold mb-2">Références</h3>
+                    <h3 class="text-xl font-bold mb-2">REFERENCES</h3>
                     <div id="referencesList">
                         <div class="reference mb-4">
                             <input type="text" placeholder="Nom" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
@@ -112,7 +112,7 @@
                 <!-- Boutons -->
                 <div class="flex gap-4">
                     <button id="sauvegarder" class="bg-green-500 text-white px-4 py-2 rounded flex-1">Sauvegarder</button>
-                    <button id="pdf" onclick="previewPDF()" class="bg-blue-500 text-white px-4 py-2 rounded flex-1">Télécharger en PDF</button>
+                    <button id="pdf" onclick="generatePDF()" class="bg-blue-500 text-white px-4 py-2 rounded flex-1">Télécharger en PDF</button>
                 
                 </div>
             </div>
@@ -122,53 +122,89 @@
                 <div id="cvPreview" class="w-full bg-white shadow-lg flex flex-col md:flex-row text-lg">
                     <!-- Sidebar -->
                     <div class="w-full md:w-1/3 bg-gray-800 text-white p-8">
-                        <div class="mt-6 pb-2">
-                            <img id="photoPreview" src="profile.jpg" alt="Photo" class="w-80 h-80 mx-auto rounded-full border-4 border-white">
-                            <h2 id="nomPreview" class="text-lg font-bold mt-4 text-blue-400">PRÉNOM NOM</h2>
-                            <p id="titrePreview" class="text-lg text-gray-300">Titre du poste</p>
-                            <p id="situationPreview" class="text-lg text-gray-300">Situation actuelle</p>
-                            <p id="agePreview" class="text-lg text-gray-300">Age</p>
-                            <p id="sexePreview" class="text-lg text-gray-300">Sexe</p>
+                        <div class="mt-6 pb-2 font-sans ">
+                            <img id="photoPreview" src="profile.jpg" alt="Photo" class="w-40 h-40 mx-auto rounded-full border-4 border-white">
+                            <h2 id="nomPreview" class="text-lg font-bold pb-5 mt-4 text-blue-400">PRÉNOM NOM</h2>
+                            <p id="titrePreview" class="text-lg pb-5 text-gray-300">Titre du poste</p>
+                            <p id="situationPreview" class="text-lg pb-5 text-gray-300">Situation actuelle</p>
+                            <p id="agePreview" class="text-lg pb-5  text-gray-300">Age</p>
+                            <p id="sexePreview" class="text-lg  font-sans text-gray-300">Sexe</p>
                         </div>
-                        <div class="mt-6 text-gray-300">
-                            <p id="telephonePreview"><i class="fas fa-phone"></i> </p>
-                            <p id="emailPreview"><i class="fas fa-envelope"></i> </p>
-                            <p id="adressePreview"><i class="fas fa-map-marker-alt"></i> Ville, Pays</p>
+                        <div class="mt-6 text-sm text-gray-300">
+                            <p id="telephonePreview  " class=" pb-5 font-sans "><i class="fas fa-phone"></i> </p>
+                            <p id="emailPreview "  class=" pb-5 font-sans "><i class="fas fa-envelope"></i> </p>
+                            <p id="adressePreview " class=" pb-5 font-sans "><i class="fas fa-map-marker-alt "></i> Ville, Pays</p>
+                        </div>
+                        <div class="mt-6 ">
+                        <h3  class="text-xl font-bold border-b pb-2 bg-blue-500 border-blue-400 "> COMPÉTENCES</h3>
+                            <ul id="competencesPreview" class="mt-2 space-y-2 pb-5"></ul>
                         </div>
                         <div class="mt-6">
-                        <h3  class="text-xl font-bold border-b pb-2 border-blue-400"> COMPÉTENCES</h3>
-                            <ul id="competencesPreview" class="mt-2 space-y-2"></ul>
+                            <h3 class="text-xl font-bold border-b pb-2 bg-blue-500  border-blue-400">LANGUES</h3>
+                            <ul id="languesPreview" class="mt-2 space-y-2 pb-5"></ul>
                         </div>
                         <div class="mt-6">
-                            <h3 class="text-xl font-bold border-b pb-2 border-blue-400">LANGUES</h3>
-                            <ul id="languesPreview" class="mt-2 space-y-2"></ul>
+                            <h3 class="text-xl font-bold border-b pb-2 bg-blue-500 border-blue-400">CENTRES D'INTERETS</h3>
+                            <ul id="" class="mt-2 space-y-2 pb-5">
+                                <li class="text-sm">🎮 Jeux</li>
+                            <li class="text-sm">🎵 Musique</li>
+                            <li class="text-sm">📷 Photographie</li>
+                            <li class="text-sm">✈️ Voyage</li>
+                            </ul>
                         </div>
                     </div>
                     <!-- Main content -->
                     <div class="w-full md:w-2/3 p-8 bg-white-200">
                         <div class="mb-6">
-                            <h2 id="nomPreview2" class="text-3xl font-bold text-blue-500">PRÉNOM NOM</h2>
-                            <p id="titrePreview2" class="text-2xl font-semibold text-gray-700">Titre du poste</p>
-                            <p id="descriptionPreview" class="mt-4 text-gray-700">Description</p>
+                            <h2 id="nomPreview2" class="text-2xl font-bold text-blue-500">PRÉNOM NOM</h2>
+                            <p id="titrePreview2" class="text-xl pb-5 font-semibold text-gray-700">Titre du poste</p>
+                            <p id="descriptionPreview" class="mt-4 pb-5 text-lg text-gray-700">Description</p>
                         </div>
                         <div class="mt-8">
-                            <h3 class="text-2xl font-bold border-b pb-2 bg-gray-800 border-blue-400 text-white">Expérience Professionnelle</h3>
+                            <h3 class="text-2xl font-bold border-b pb-2 bg-gray-800 border-blue-400 pb-5 text-white">EXPERIENCES PROESSIONNELLES</h3>
                             <div id="experiencesPreview" class="mt-4 space-y-6"></div>
                         </div>
                         <div class="mt-8">
-                            <h3 class="text-2xl font-bold border-b pb-2 border-blue-400  bg-gray-800 text-white">Formation</h3>
-                            <div id="formationPreview" class="mt-4 space-y-6"></div>
+                            <h3 class="text-2xl font-bold border-b pb-2 border-blue-400  bg-gray-800 text-white">FORMATIONS</h3>
+                            <div id="formationPreview" class="mt-4 space-y-6 pb-5"></div>
                         </div>
                         <div class="mt-8">
-                            <h3 class="text-2xl font-bold border-b pb-2 border-blue-400  bg-gray-800 text-white">Références</h3>
-                            <div id="referencesPreview" class="mt-4 space-y-6"></div>
+                            <h3 class="text-2xl font-bold border-b pb-2 border-blue-400  bg-gray-800 text-white">REFERENCES</h3>
+                            <div id="referencesPreview" class="mt-4 space-y-6 pb-5"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <script src="js/script.js"></script>
+        <script src="js/script.js">
+             function generatePDF() {
+            const element = document.getElementById('cvPreview');
+            const opt = {
+                margin:       10,
+                filename:     'cv.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+        
+            // Générer le PDF et l'ouvrir dans une nouvelle fenêtre
+            html2pdf().from(element).set(opt).outputPdf('datauristring').then(function(pdfAsString) {
+                const pdfWindow = window.open("");
+                pdfWindow.document.write("<iframe width='100%' height='100%' src='" + pdfAsString + "'></iframe>");
+            });
+        }
+        function generatePDF() {
+            const element = document.getElementById('cvPreview');
+            const opt = {
+                margin:       10,
+                filename:     'cv.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };}
+        </script>
+        
     
     </body>
     </html>
