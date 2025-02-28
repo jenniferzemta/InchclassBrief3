@@ -1,6 +1,22 @@
 
 
-  
+  // teclecharger
+
+function previewPDF() {
+    const $element = $('#cvPreview');
+    const options = {
+        margin: 10,
+        filename: 'mon-cv.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 4, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(options).from($element[0]).outputPdf('bloburl').then((pdfUrl) => {
+        window.open(pdfUrl, '_blank');
+       });
+    }
+
+
     $(document).ready(function() {
         // Validation des champs
         function validateForm() {
@@ -99,6 +115,8 @@
 
             return isValid;
         }
+
+
         $(document).ready(function () {
             // Valider les dates d'expérience
             $('#experiences').on('input', 'input[placeholder*="Durée"]', function () {
@@ -249,17 +267,20 @@
     function updatePreview() {
         
         // Mise à jour des informations personnelles avec des icônes
+
+        // Mise à jour des informations personnelles avec des icônes
         $('#nomPreview').html(` ${$('#nom').val()}`);
-        $('#agePreview').html(` ${$('#age').val()} ans`);
-        $('#sexePreview').html(` ${$('#sexe').val()}`);
-        $('#situationPreview').html(` ${$('#situation').val()}`);
+        $('#agePreview').html(`Age : ${$('#age').val()} ans`);
+        $('#sexePreview').html(` Sexe :${$('#sexe').val()}`);
         $('#nomPreview2').html(` ${$('#nom').val()}`);
-        $('#titrePreview').html(` ${$('#titre').val()}`);
-        $('#titrePreview2').html(` ${$('#titre').val()}`);
-        $('#descriptionPreview').html(`<i class="fas fa-info-circle"></i> ${$('#description').val()}`);
+        $('#situationPreview').html(` Siutation : ${$('#situation').val()}`);
+        $('#titrePreview').html(`   Poste : ${$('#titre').val()}`);
+        $('#titrePreview2').html(` Poste :  ${$('#titre').val()}`);
+        $('#descriptionPreview').html(` Profil : ${$('#description').val()}`);
         $('#telephonePreview').html(`<i class="fas fa-phone"></i> ${$('#telephone').val()}`);
         $('#emailPreview').html(`<i class="fas fa-envelope"></i> ${$('#email').val()}`);
         $('#adressePreview').html(`<i class="fas fa-map-marker-alt"></i> ${$('#adresse').val()}`);
+
 
         // Mise à jour de la photo
         const photoFile = $('#photo')[0].files[0];
@@ -281,7 +302,7 @@
 
             $('#experiencesPreview').append(`
                 <div class="mb-4">
-                    <h4 class="text-xl font-bold">${poste}</h4>
+                    <h4 class="text-xl  font-bold">${poste}</h4>
                     <p class="text-gray-700">${entreprise} | ${duree}</p>
                     <p class="text-gray-600">${description}</p>
                 </div>
@@ -309,14 +330,14 @@
         $('#competencesPreview').empty();
         $('#competencesList .competence').each(function() {
             const competence = $(this).find('input').val();
-            $('#competencesPreview').append(`<li>${competence}</li>`);
+            $('#competencesPreview').append(`<li class=" list-disc pl-5 ">${competence}</li>`);
         });
 
         // Mise à jour des langues
         $('#languesPreview').empty();
         $('#languesList .langue').each(function() {
             const langue = $(this).find('input').val();
-            $('#languesPreview').append(`<li>${langue}</li>`);
+            $('#languesPreview').append(`<li class=" list-disc pl-5 ">${langue}</li>`);
         });
 
         // Mise à jour des références
@@ -397,48 +418,9 @@
         `);
         updatePreview();
     });
-    // Télécharger le CV en PDF
-    $('#telechargerPDF').click(function () {
-        // Sélectionner la section à convertir en PDF
-        const element = document.getElementById('#cvPreview');
-        //const $element = $('cvPreview');
-                        const options = {
-                            margin: 10,
-                            filename: 'mon_cv.pdf',
-                            image: { type: 'jpeg', quality: 0.98 },
-                            html2canvas: { scale: 4 , useCORS: true },
-                            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                        };
-                        html2pdf().set(options).from(element[0]).outputPDF('bloburl').then( (pdfUrl ) => {
-                        window.open(pdfUrl, '_blank');
-                        
-                console.log('PDF généré avec succès !');
-        })       .catch((err) => {
-            console.error('Erreur lors de la génération du PDF :', err);
-    //       });
-                        });
-                    });
-    //     // Options pour html2pdf
-    //     const options = {
-    //         margin: [10, 10, 10, 10], // Marges (haut, droite, bas, gauche)
-    //         filename: 'CV.pdf', // Nom du fichier PDF
-    //         image: { type: 'jpeg', quality: 0.98 }, // Qualité de l'image
-    //         html2canvas: { scale: 4, useCORS: true }, // Options pour html2canvas
-    //         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }, // Format du PDF
-    //     };
 
-    //     // Générer le PDF
-    //     html2pdf()
-    //         .from(element)
-    //         .set(options)
-    //         .save()
-    //         .then(() => {
-    //             console.log('PDF généré avec succès !');
-    //         })
-    //         .catch((err) => {
-    //             console.error('Erreur lors de la génération du PDF :', err);
-    //         });
-    // });
+
+    
 
     //ANIMATIOND
                 anime({
@@ -495,3 +477,29 @@
             easing: 'easeOutExpo',
             delay: 500
         });
+
+
+        $(document).ready(function () {
+            $('#style1').click(function () {
+                $('#cvPreview').removeClass('style2 style3').addClass('style1');
+            });
+        
+            $('#style2').click(function () {
+                $('#cvPreview').removeClass('style1 style3').addClass('style2');
+            });
+        
+            $('#style3').click(function () {
+                $('#cvPreview').removeClass('style1 style2').addClass('style3');
+            });
+        });
+
+        // Appliquer les styles de police
+    $('#fontStyle1').click(function () {
+        $('#cvPreview').removeClass('fontStyle2 fontStyle3').addClass('fontStyle1');
+    });
+    $('#fontStyle2').click(function () {
+        $('#cvPreview').removeClass('fontStyle1 fontStyle3').addClass('fontStyle2');
+    });
+    $('#fontStyle3').click(function () {
+        $('#cvPreview').removeClass('fontStyle1 fontStyle2').addClass('fontStyle3');
+    });

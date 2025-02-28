@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Générateur de CV</title>
         <link rel="stylesheet" href="../css/tailwind.css" class="">
-        <link rel="stylesheet" href="../css/style.css" class="">
+        <!-- <link rel="stylesheet" href="../css/style.css" class=""> -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -14,6 +14,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     </head>
+
     <body class="bg-gray-100 flex justify-center p-4">
         <div class="w-full max-w-7xl bg-white shadow-lg flex flex-col md:flex-row text-lg">
             <!-- Formulaire de saisie -->
@@ -112,7 +113,7 @@
                 <!-- Boutons -->
                 <div class="flex gap-4">
                     <button id="sauvegarder" class="bg-green-500 text-white px-4 py-2 rounded flex-1">Sauvegarder</button>
-                    <button id="pdf" onclick="generatePDF()" class="bg-blue-500 text-white px-4 py-2 rounded flex-1">Télécharger en PDF</button>
+                    <button onclick="previewPDF()" class="bg-blue-500 text-white px-4 py-2 rounded flex-1">Télécharger en PDF</button>
                 
                 </div>
             </div>
@@ -130,18 +131,18 @@
                             <p id="agePreview" class="text-lg pb-5  text-gray-300">Age</p>
                             <p id="sexePreview" class="text-lg  font-sans text-gray-300">Sexe</p>
                         </div>
-                        <div class="mt-6 text-sm text-gray-300">
-                            <p id="telephonePreview  " class=" pb-5 font-sans "><i class="fas fa-phone"></i> </p>
-                            <p id="emailPreview "  class=" pb-5 font-sans "><i class="fas fa-envelope"></i> </p>
-                            <p id="adressePreview " class=" pb-5 font-sans "><i class="fas fa-map-marker-alt "></i> Ville, Pays</p>
+                        <div class="mt-6  text-gray-300">
+                            <p id="telephonePreview" class=" pb-5 font-sans "><i class="fas fa-phone"></i> </p>
+                            <p id="emailPreview"  class=" pb-5 text-base font-sans "><i class="fas fa-envelope"></i> </p>
+                            <p id="adressePreview" class=" pb-5 font-sans "><i class="fas fa-map-marker-alt "></i> Ville, Pays</p>
                         </div>
                         <div class="mt-6 ">
                         <h3  class="text-xl font-bold border-b pb-2 bg-blue-500 border-blue-400 "> COMPÉTENCES</h3>
-                            <ul id="competencesPreview" class="mt-2 space-y-2 pb-5"></ul>
+                            <ul id="competencesPreview" class="mt-2 space-y-2 p-6 pb-5"></ul>
                         </div>
                         <div class="mt-6">
                             <h3 class="text-xl font-bold border-b pb-2 bg-blue-500  border-blue-400">LANGUES</h3>
-                            <ul id="languesPreview" class="mt-2 space-y-2 pb-5"></ul>
+                            <ul id="languesPreview" class="mt-2 space-y-2 p-6 pb-5"></ul>
                         </div>
                         <div class="mt-6">
                             <h3 class="text-xl font-bold border-b pb-2 bg-blue-500 border-blue-400">CENTRES D'INTERETS</h3>
@@ -156,9 +157,10 @@
                     <!-- Main content -->
                     <div class="w-full md:w-2/3 p-8 bg-white-200">
                         <div class="mb-6">
-                            <h2 id="nomPreview2" class="text-2xl font-bold text-blue-500">PRÉNOM NOM</h2>
-                            <p id="titrePreview2" class="text-xl pb-5 font-semibold text-gray-700">Titre du poste</p>
-                            <p id="descriptionPreview" class="mt-4 pb-5 text-lg text-gray-700">Description</p>
+                            <h2 id="nomPreview2" class="text-3xl font-bold text-blue-500">PRÉNOM NOM</h2>
+                            <p id="titrePreview2" class="text-lg pb-5 font-semibold text-gray-700">Titre du poste</p>
+                            <p id="situationPreview" class="text-lg pb-5 italic font-semibold text-gray-700">Situation actuelle</p>
+                            <p id="descriptionPreview" class="mt-4 pb-5 text-sm text-gray-700">Description</p>
                         </div>
                         <div class="mt-8">
                             <h3 class="text-2xl font-bold border-b pb-2 bg-gray-800 border-blue-400 pb-5 text-white">EXPERIENCES PROESSIONNELLES</h3>
@@ -174,35 +176,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="flex space-x-4 mt-10 mb-6">
+                    <button id="style1" class="bg-blue-500 text-white px-4 py-2 rounded">Style 1</button>
+                    <button id="style2" class="bg-yellow-500 text-white px-4 py-2 rounded">Style 2</button>
+                   
+                </div>
+                <div class="flex space-x-4 mb-6">
+                  
+                    <button id="fontStyle2" class="bg-blue-500 text-white px-4 py-2 rounded">Police 2</button>
+                    <button id="fontStyle3" class="bg-yellow-500 text-white px-4 py-2 rounded">Police 3</button>
+                </div>
+                
             </div>
         </div>
 
         <script src="js/script.js">
-             function generatePDF() {
-            const element = document.getElementById('cvPreview');
-            const opt = {
-                margin:       10,
-                filename:     'cv.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2 },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-        
-            // Générer le PDF et l'ouvrir dans une nouvelle fenêtre
-            html2pdf().from(element).set(opt).outputPdf('datauristring').then(function(pdfAsString) {
-                const pdfWindow = window.open("");
-                pdfWindow.document.write("<iframe width='100%' height='100%' src='" + pdfAsString + "'></iframe>");
-            });
-        }
-        function generatePDF() {
-            const element = document.getElementById('cvPreview');
-            const opt = {
-                margin:       10,
-                filename:     'cv.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2 },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };}
+            
         </script>
         
     
